@@ -26,7 +26,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/header.inc.php');
 ?>
 <article class="article clearfix">
 	<div class="col_50">
-		<form action="/fhical/saveUserData.php" method="POST" class="form">
+		<form action="/fhical/icalapp/saveUserData.php" method="POST" class="form">
 			<h2><?php echo $title ?></h2>
 			<p>
 			<label for="key">
