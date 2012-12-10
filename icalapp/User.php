@@ -51,11 +51,11 @@ class User {
 	}
 
 	public function getEncryptedPass() {
-		return base64_decode($this->encryptedPass);
+		return $this->encryptedPass;
 	}
 
 	public function getEncryptionIv() {
-		return base64_decode($this->iv);
+		return $this->iv;
 	}
 
 	private function setId($id) {
@@ -70,14 +70,14 @@ class User {
 	}
 
 	public function setEncryptedPass($encryptedPass, $changed = true) {
-		$this->encryptedPass = base64_encode($encryptedPass);
+		$this->encryptedPass = $encryptedPass;
 		if ($changed) {
 			$this->changed = true;
 		}
 	}
 
 	public function setEncryptionIv($iv, $changed = true) {
-		$this->iv = base64_encode($iv);
+		$this->iv = $iv;
 		if ($changed) {
 			$this->changed = true;
 		}
@@ -101,7 +101,6 @@ class User {
 		$myDB = MyDbSingleton::getInstance();
 		if (empty($this->id)) {
 			$sql = "INSERT INTO user(googleid, name, email, twuser, encryptedpass, iv, options) VALUES (?, ?, ?, ?, ?, ?, ?);";
-		
 			if (!($stmt = $myDB->getDB()->prepare($sql))) {
 		        throw new Exception("Error preparing statement: "  . $myDB->getDb()->error . " in " . $sql, 1);
 			}
@@ -111,15 +110,14 @@ class User {
 									$this->name,
 									$this->email,
 									$this->twUser,
-									$this->encryptedPass,
-									$this->iv,
-									$this->options
+									base64_encode($this->encryptedPass),
+									base64_encode($this->iv),
+									json_encode($this->options)
 								)) {
 		        throw new Exception("Error binding parameters: " . $stmt->error, 1);
 			}
 		} else {
 			$sql = "REPLACE INTO user(id, googleid, name, email, twuser, encryptedpass, iv, options) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
-		
 			if (!($stmt = $myDB->getDB()->prepare($sql))) {
 		        throw new Exception("Error preparing statement: "  . $myDB->getDb()->error . " in " . $sql, 1);
 			}
@@ -130,9 +128,9 @@ class User {
 									$this->name,
 									$this->email,
 									$this->twUser,
-									$this->encryptedPass,
-									$this->iv,
-									$this->options
+									base64_encode($this->encryptedPass),
+									base64_encode($this->iv),
+									json_encode($this->options)
 								)) {
 		        throw new Exception("Error binding parameters: " . $stmt->error, 1);
 			}
@@ -208,7 +206,7 @@ class User {
 	        		$user->setEncryptionIv(base64_decode($row['iv']), false);
 	        	}
 	        	if (!empty($row['options'])) {
-	        		$user->setOptions($row['options'], false);
+	        		$user->setOptions(json_decode($row['options'], true), false);
 	        	}
 	        } catch (Exception $e) {
 	        	$user = NULL;

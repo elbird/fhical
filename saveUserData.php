@@ -1,13 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/fhical/icalapp/User.php';
 
-session_start();
-
-if(empty($_SESSION['user'])) {
-	header('Location: http://' . $_SERVER['HTTP_HOST'] . '/fhical/index.php');
-	die();
-}
-$user = $_SESSION['user'];
+include($_SERVER['DOCUMENT_ROOT'] . '/fhical/icalapp/global.inc.php');
 
 $error = array();
 $data = array();
@@ -72,5 +65,5 @@ $user->save();
 //5. save the key to the session and redirect
 $_SESSION['key'] = $key;
 
-header('Location: http://' . $_SERVER['HTTP_HOST'] . '/fhical/userDataForm.php');
-die();
+header('Location: http://' . $_SERVER['HTTP_HOST'] . '/fhical/setOptionsForm.php');
+

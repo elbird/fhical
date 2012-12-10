@@ -1,21 +1,15 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/fhical/icalapp/User.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/fhical/icalapp/config.php';
-$config = Config::get();
 
-session_start();
 //TODO remove when finished
+require_once $_SERVER['DOCUMENT_ROOT'] . '/fhical/icalapp/User.php';
+session_start();
 if(empty($_SESSION['user'])) {
 	$user = User::retrieveUserByGoogleId("1234");
 	$_SESSION['user'] = $user;
 }
 
-if(empty($_SESSION['user'])) {
-	header('Location: http://' . $_SERVER['HTTP_HOST'] . '/fhical/index.php');
-	die();
-}
+include($_SERVER['DOCUMENT_ROOT'] . '/fhical/icalapp/global.inc.php');
 
-$user = $_SESSION['user'];
 $error = array();
 if(!empty($_SESSION['userDataFormError'])) {
 	$error = $_SESSION['userDataFormError'];
