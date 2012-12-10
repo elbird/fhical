@@ -1,6 +1,6 @@
 <?php
 
-include($_SERVER['DOCUMENT_ROOT'] . '/fhical/icalapp/global.inc.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/global.inc.php');
 
 if(!empty($_SESSION['setOptionsFormError'])) {
 	unset($_SESSION['setOptionsFormError']);

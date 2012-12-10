@@ -150,13 +150,17 @@ class User {
 		    if(!$stmt->execute()) {
 		        throw new Exception("Error executing statement: " . $stmt->error, 1);
 		    }
-		    $result = $stmt->get_result();
-	        $row = $result->fetch_assoc();
-	        if(!empty($row) && is_array($row)) {
-	        	if (!empty($row['id'])) {
-	        		$this->setId($row['id']);
+		    $id = 0;
+    	    $stmt->bind_result($id);
+        	$stmt->store_result();
+        	if($stmt->num_rows > 0) {
+        		$stmt->fetch();
+	        	if (!empty($id)) {
+	        		$this->setId($id);
 	        	}
 			}
+			$stmt->free_result();
+	    	$stmt->close();
 		}
 	}
 
@@ -172,13 +176,13 @@ class User {
 		$user = NULL;
 
 		$myDB = MyDbSingleton::getInstance();
-		$sql = "SELECT * FROM user WHERE ";
+		$sql = "SELECT id, googleid, name, email, twuser, encryptedpass, iv, options FROM user WHERE ";
 		if(!empty($values["id"])) {
 			$sql .= "id = ? LIMIT 0, 1;";
 			$value = $values["id"];
 		} else if (!empty($values["googleId"])) {
 			$sql .= "googleId = ? LIMIT 0, 1;";
-			$value = $values["googleId"];
+			$value = (string)$values["googleId"];
 		} else {
 			return NULL;
 		}
@@ -191,9 +195,11 @@ class User {
 	    if(!$stmt->execute()) {
 	        throw new Exception("Error executing statement: " . $stmt->error, 1);
 	    }
-	    $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
-        if(!empty($row) && is_array($row)) {
+	    $row = array();
+	    $stmt->bind_result($row['id'], $row['googleid'], $row['name'], $row['email'], $row['twuser'], $row['encryptedpass'], $row['iv'], $row['options']);
+        $stmt->store_result();
+        if($stmt->num_rows > 0) {
+        	$stmt->fetch();
         	try {
 	        	$user = new User($row['googleid'], $row['name'], $row['email'], $row['id']);
 	        	if (!empty($row['twuser'])) {
@@ -212,6 +218,7 @@ class User {
 	        	$user = NULL;
 	        }
         }
+        $stmt->free_result();
 	    $stmt->close();
 	    return $user;
 	}

@@ -30,7 +30,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/header.inc.php');
 </article>
 <article class="article clearfix">
 	<div class="col_50">
-		<form action="/fhical/saveOptions.php" method="POST">
+		<form action="/fhical/icalapp/saveOptions.php" method="POST">
 			<div>
 				<?php if (!empty($error['stg_kz'])): ?>
 					<p class="warning">Bitte gib einen Studiengang an</p>
