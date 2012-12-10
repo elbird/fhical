@@ -25,6 +25,11 @@
               <a href="<?php echo $item["url"] ?>"><?php echo $item["name"] ?></a>
             </li>
           <?php endforeach; ?>
+          <?php if (!empty($_SESSION['user']) || !empty($_SESSION['token'])): ?>
+            <li>
+              <a href="index.php?logout">Logout</a>
+            </li>
+          <?php endif; ?>
         </ul>
       </nav>
     </header>

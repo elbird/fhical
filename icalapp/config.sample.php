@@ -22,7 +22,7 @@ CREATE TABLE `user` (
  `twuser` varchar(50) DEFAULT NULL,
  `encryptedpass` text,
  `iv` text,
- `options` text
+ `options` text,
  PRIMARY KEY (`id`),
  UNIQUE KEY `googleid` (`googleid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
@@ -43,7 +43,7 @@ class Config {
 		$config['mySqlPort'] = 3306; // the DB port
 
 		$config['icalUrlBaseParams'] = array('type' => 'student', 'format' => 'ical', 'version' => '2', 'target' => 'ical');
-		$config['pageTitle'] = "FH Technikum Wien - Ical Downloader (für Google Calendar)";
+		$config['pageTitle'] = "FH TW - ICAL für Google Calendar";
 		$config['copyright'] = '&copy; Sebastian Vogel / Theme: <a href="http://simpliste.ru/en/"">simpliste</a>';
 
 		$config['menuItems'] = array(

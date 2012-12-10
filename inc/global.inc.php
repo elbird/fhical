@@ -10,9 +10,14 @@ if(session_id() == '') {
     session_start();
 }
 
-if(empty($_SESSION['user'])) {
+if(empty($_SESSION['user']) || empty($_SESSION['token'])) {
+	$_SESSION['notLoggedIn'] = true;
 	header('Location: http://' . $_SERVER['HTTP_HOST'] . '/fhical/index.php');
 	die();
+}
+
+if(isset($_SESSION['notLoggedIn'])) {
+	unset($_SESSION['notLoggedIn']);
 }
 
 $user = $_SESSION['user'];

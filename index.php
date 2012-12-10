@@ -31,6 +31,7 @@ if (isset($_SESSION['token'])) {
 }
 
 if (isset($_REQUEST['logout'])) {
+  unset($_SESSION['user']);
   unset($_SESSION['token']);
   $client->revokeToken();
 }
@@ -43,7 +44,7 @@ if ($client->getAccessToken()) {
   $id = filter_var($userInfo['id'], FILTER_SANITIZE_NUMBER_INT);
 
   try {
-    $myUser = User::retrieveUserById($id);
+    $myUser = User::retrieveUserByGoogleId($id);
   } catch (Exception $e) {
     echo $e->getMessage();
     exit();
@@ -61,35 +62,38 @@ if ($client->getAccessToken()) {
   }
   // The access token may have been updated lazily.
   $_SESSION['token'] = $client->getAccessToken();
+  $_SESSION['user'] = $myUser;
 } else {
   $authUrl = $client->createAuthUrl();
 }
-?>
-<!doctype html>
-<html>
-<head><meta charset="utf-8"></head>
-<body>
-<header><h1>Google UserInfo Sample App</h1></header>
-<?php if(isset($personMarkup)): ?>
-<?php print $personMarkup ?>
-<?php 
 
-//$url = new Google_Url();
-//$url->longUrl = "https://developers.google.com/accounts/docs/OAuth2Login#overview";
-//$short = $urlshortener->url->insert($url);
-//var_dump($short);
-?>
-<?php endif ?>
-<?php
-if(isset($myUser)) {
-  var_dump($myUser);
+if(!empty($_SESSION['user'])) {
+  $user = $_SESSION['user'];
 }
+$currentPage = "home";
+$title = "Home";
+include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/header.inc.php');
 ?>
+
+<article class="article clearfix">
+  <div class="col_50">
+    <h1>FH Technikum Wien - Ical Downloader (für Google Calendar)</h1>
+    <?php if(isset($_SESSION['notLoggedIn'])): ?>
+    <p class="message">Bitte logge dich ein!</p>
+    <?php unset($_SESSION['notLoggedIn']);
+          endif; ?>
+    <?php if(isset($authUrl)): ?>
+        <p>Um den Kalender Dowload verwenden zu können musst du dich erst einloggen:<br />
+          <a class='button' href='<?php echo $authUrl; ?>'>Login mit Google</a>
+        </p>
+    <? elseif ($_SESSION['user']): ?>
+      <h2>Hallo <?php echo $user->getName(); ?>!</h2>
+       <ul>
+         <li>Hier kannst du deine Userdaten ändern: <a href="userDataForm.php"></a> </li>
+         <li>Hier kannst du die URL einsehen und die Optionen anpassen: <a href="setOptionsForm.php"></a> </li>
+       </ul>
+    <? endif; ?>
+  </div>
+</article>
 <?php
-  if(isset($authUrl)) {
-    print "<a class='login' href='$authUrl'>Connect Me!</a>";
-  } else {
-   print "<a class='logout' href='?logout'>Logout</a>";
-  }
-?>
-</body></html>
+include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/footer.inc.php');
