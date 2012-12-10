@@ -1,5 +1,5 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . '/fhical/icalapp/global.inc.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/global.inc.php');
 
 $url = 'http://' . $_SERVER['HTTP_HOST'] . '/fhical/getIcal.php?user=' .
 		$user->getId() . '&key=' . urlencode(!empty($_SESSION['key']) ? $_SESSION['key'] : "PUT_YOUR_KEY_HERE");
@@ -17,7 +17,7 @@ if(!empty($_SESSION['setOptionsFormError'])) {
 
 $currentPage = "options";
 $title = "Kalender-Option auswählen";
-include($_SERVER['DOCUMENT_ROOT'] . '/fhical/header.inc.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/header.inc.php');
 ?>
 <article class="hero clearfix">
 	<div>
@@ -141,4 +141,4 @@ include($_SERVER['DOCUMENT_ROOT'] . '/fhical/header.inc.php');
 	</div>
 </article>
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . '/fhical/footer.inc.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/footer.inc.php');

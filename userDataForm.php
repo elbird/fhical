@@ -8,7 +8,7 @@ if(empty($_SESSION['user'])) {
 	$_SESSION['user'] = $user;
 }
 
-include($_SERVER['DOCUMENT_ROOT'] . '/fhical/icalapp/global.inc.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/global.inc.php');
 
 $error = array();
 if(!empty($_SESSION['userDataFormError'])) {
@@ -22,7 +22,7 @@ if(!empty($_SESSION['userDataFormData'])) {
 }
 $currentPage = "userData";
 $title = "User-Daten eingeben";
-include($_SERVER['DOCUMENT_ROOT'] . '/fhical/header.inc.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/header.inc.php');
 ?>
 <article class="article clearfix">
 	<div class="col_50">
@@ -60,4 +60,4 @@ include($_SERVER['DOCUMENT_ROOT'] . '/fhical/header.inc.php');
 	</div>
 </article>
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . '/fhical/footer.inc.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/footer.inc.php');
