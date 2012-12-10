@@ -1,7 +1,0 @@
-# Allow anyone read-only access
-<Limit GET POST PUT>
-Order allow,deny
-Allow from all
-Satisfy any
-</Limit>
-
