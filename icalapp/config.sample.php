@@ -42,7 +42,7 @@ class Config {
 		$config['mySqlDb'] = 'fhical'; // the DB name
 		$config['mySqlPort'] = 3306; // the DB port
 
-		$config['icalUrlBaseParams'] = "&type=student&format=ical&version=2&target=ical";
+		$config['icalUrlBaseParams'] = array('type' => 'student', 'format' => 'ical', 'version' => '2', 'target' => 'ical');
 		$config['pageTitle'] = "FH Technikum Wien - Ical Downloader (für Google Calendar)";
 		$config['copyright'] = '&copy; Sebastian Vogel / Theme: <a href="http://simpliste.ru/en/"">simpliste</a>';
 

@@ -43,8 +43,8 @@ header("Content-Type: text/calendar");
 header("Content-disposition: filename=FH-Kalender_09_2012_ical.ics");
 $url = "https://" . $user->getTwUser() . ":" . $password . '@cis.technikum-wien.at/cis/private/lvplan/stpl_kalender.php?';
 
-$options = array('type' => 'student', 'format' => 'ical', 'version' => '2', 'target' => 'ical', 'pers_uid' => $user->getTwUser());
-$options = array_merge($options, $user->getOptions());
+$options = array('pers_uid' => $user->getTwUser());
+$options = array_merge($options, $config['icalUrlBaseParams'], $user->getOptions());
 $url = $url . http_build_query($options);
 
 $ch = curl_init($url);
