@@ -1,6 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/fhical/icalapp/User.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/fhical/icalapp/config.php';
+require_once(dirname(__FILE__) . '/icalapp/User.php');
+require_once(dirname(__FILE__) . '/icalapp/config.php');
 $config = Config::get();
 
 if (empty($_GET['user']) || empty($_GET['key'])) {

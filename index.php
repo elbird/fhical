@@ -1,9 +1,9 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/fhical/icalapp/google-api-php-client/src/Google_Client.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/fhical/icalapp/google-api-php-client/src/contrib/Google_Oauth2Service.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/fhical/icalapp/google-api-php-client/src/contrib/Google_UrlshortenerService.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/fhical/icalapp/User.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/fhical/icalapp/config.php';
+require_once(dirname(__FILE__) . '/icalapp/google-api-php-client/src/Google_Client.php');
+require_once(dirname(__FILE__) . '/icalapp/google-api-php-client/src/contrib/Google_Oauth2Service.php');
+require_once(dirname(__FILE__) . '/icalapp/google-api-php-client/src/contrib/Google_UrlshortenerService.php');
+require_once(dirname(__FILE__) . '/icalapp/User.php');
+require_once(dirname(__FILE__) . '/icalapp/config.php');
 session_start();
 
 $client = new Google_Client();
@@ -72,7 +72,7 @@ if(!empty($_SESSION['user'])) {
 }
 $currentPage = "home";
 $title = "Home";
-include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/header.inc.php');
+include(dirname(__FILE__) . '/inc/header.inc.php');
 ?>
 
 <article class="article clearfix">
@@ -96,4 +96,4 @@ include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/header.inc.php');
   </div>
 </article>
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/footer.inc.php');
+include(dirname(__FILE__) . '/inc/footer.inc.php');

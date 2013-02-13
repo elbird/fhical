@@ -1,7 +1,7 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/global.inc.php');
+include(dirname(__FILE__) . '/inc/global.inc.php');
 
-$url = 'http://' . $_SERVER['HTTP_HOST'] . '/fhical/getIcal.php?user=' .
+$url = $config['baseUrl'] . 'getIcal.php?user=' .
 		$user->getId() . '&key=' . urlencode(!empty($_SESSION['key']) ? $_SESSION['key'] : "PUT_YOUR_KEY_HERE");
 
 $options = $user->getOptions();
@@ -17,7 +17,7 @@ if(!empty($_SESSION['setOptionsFormError'])) {
 
 $currentPage = "options";
 $title = "Kalender-Option auswählen";
-include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/header.inc.php');
+include(dirname(__FILE__) . '/inc/header.inc.php');
 ?>
 <article class="hero clearfix">
 	<div>
@@ -30,7 +30,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/header.inc.php');
 </article>
 <article class="article clearfix">
 	<div class="col_50">
-		<form action="/fhical/icalapp/saveOptions.php" method="POST">
+		<form action="icalapp/saveOptions.php" method="POST">
 			<div>
 				<?php if (!empty($error['stg_kz'])): ?>
 					<p class="warning">Bitte gib einen Studiengang an</p>
@@ -141,4 +141,4 @@ include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/header.inc.php');
 	</div>
 </article>
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/footer.inc.php');
+include(dirname(__FILE__) . '/inc/footer.inc.php');

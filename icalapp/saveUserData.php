@@ -1,6 +1,6 @@
 <?php
 
-include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/global.inc.php');
+include(dirname(__FILE__) . '/../inc/global.inc.php');
 
 $error = array();
 $data = array();

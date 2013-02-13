@@ -1,6 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/fhical/icalapp/config.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/fhical/icalapp/MyDbSingleton.php';
+require_once(dirname(__FILE__) . '/config.php');
+require_once(dirname(__FILE__) . '/MyDbSingleton.php');
 
 
 

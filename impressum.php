@@ -1,10 +1,10 @@
 <?php 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/fhical/icalapp/config.php';
+require_once 'icalapp/config.php';
 $config = Config::get();
 
 $currentPage = "impressum";
 $title = "Impressum";
-include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/header.inc.php');
+include('inc/header.inc.php');
 ?>
 
 <article class="article clearfix">
@@ -14,4 +14,4 @@ include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/header.inc.php');
   </div>
 </article>
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/footer.inc.php');
+include('inc/footer.inc.php');

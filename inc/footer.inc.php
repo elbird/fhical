@@ -1,4 +1,4 @@
-    </div>
+   </div>
     <footer class="footer clearfix">
       <div class="copyright"><?php echo !empty($config["copyright"]) ? $config["copyright"] : "" ?></div>
 	  <nav class="menu_bottom">

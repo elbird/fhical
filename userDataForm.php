@@ -1,14 +1,14 @@
 <?php
 
 //TODO remove when finished
-require_once $_SERVER['DOCUMENT_ROOT'] . '/fhical/icalapp/User.php';
+require_once(dirname(__FILE__) . '/icalapp/User.php');
 session_start();
 if(empty($_SESSION['user'])) {
 	$user = User::retrieveUserByGoogleId("1234");
 	$_SESSION['user'] = $user;
 }
 
-include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/global.inc.php');
+include(dirname(__FILE__) . '/inc/global.inc.php');
 
 $error = array();
 if(!empty($_SESSION['userDataFormError'])) {
@@ -22,11 +22,11 @@ if(!empty($_SESSION['userDataFormData'])) {
 }
 $currentPage = "userData";
 $title = "User-Daten eingeben";
-include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/header.inc.php');
+include(dirname(__FILE__) . '/inc/header.inc.php');
 ?>
 <article class="article clearfix">
 	<div class="col_50">
-		<form action="/fhical/icalapp/saveUserData.php" method="POST" class="form">
+		<form action="icalapp/saveUserData.php" method="POST" class="form">
 			<h2><?php echo $title ?></h2>
 			<p>
 			<label for="key">
@@ -60,4 +60,4 @@ include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/header.inc.php');
 	</div>
 </article>
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . '/fhical/inc/footer.inc.php');
+include(dirname(__FILE__) . '/inc/footer.inc.php');

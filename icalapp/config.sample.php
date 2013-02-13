@@ -31,9 +31,11 @@ class Config {
 	public static function get() {
 		$config = array();
 
+		$config['baseUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/fhical/'; // the baseurl of the ical app
+
 		$config['clientId'] = ""; // Your Google APPs Client ID
 		$config['clientSecret'] = ""; // Google OAUTH API Client Secret
-		$config['redirectUri'] = ""; // the redirect URL for the OAuth API
+		$config['redirectUri'] = $config['baseUrl'] . 'index.php'; // the redirect URL for the OAuth API
 		$config['developerKey'] = ""; // the Google Developer Key
 
 		$config['mySqlHost'] = 'localhost'; //your DB host
