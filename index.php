@@ -33,6 +33,8 @@ if (isset($_SESSION['token'])) {
 if (isset($_REQUEST['logout'])) {
   unset($_SESSION['user']);
   unset($_SESSION['token']);
+  unset($_SESSION['key']);
+  unset($_SESSION['userDataFormData']);
   $client->revokeToken();
 }
 
@@ -89,8 +91,8 @@ include(dirname(__FILE__) . '/inc/header.inc.php');
     <? elseif ($_SESSION['user']): ?>
       <h2>Hallo <?php echo $user->getName(); ?>!</h2>
        <ul>
-         <li>Hier kannst du deine Userdaten ändern: <a href="userDataForm.php"></a> </li>
-         <li>Hier kannst du die URL einsehen und die Optionen anpassen: <a href="setOptionsForm.php"></a> </li>
+         <li>Hier kannst du deine Userdaten ändern: <a href="userDataForm.php">User Daten eingeben</a> </li>
+         <li>Hier kannst du die URL einsehen und die Optionen anpassen: <a href="setOptionsForm.php">Optionen anpassen</a> </li>
        </ul>
     <? endif; ?>
   </div>
