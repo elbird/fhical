@@ -1,8 +1,8 @@
 <?php
-
-require_once (dirname(__FILE__) . '/../icalapp/User.php');
 require_once (dirname(__FILE__) . '/../icalapp/config.php');
 $config = Config::get();
+error_reporting($config['error_reporting']);
+require_once (dirname(__FILE__) . '/../icalapp/User.php');
 
 //TODO remove the if when going to production - session should always start here
 if(session_id() == '') {

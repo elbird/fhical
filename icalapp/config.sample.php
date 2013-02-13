@@ -33,6 +33,8 @@ class Config {
 
 		$config['baseUrl'] = 'http://' . $_SERVER['HTTP_HOST'] . '/fhical/'; // the baseurl of the ical app
 
+		$config['error_reporting'] = E_ALL ^ E_NOTICE;
+
 		$config['clientId'] = ""; // Your Google APPs Client ID
 		$config['clientSecret'] = ""; // Google OAUTH API Client Secret
 		$config['redirectUri'] = $config['baseUrl'] . 'index.php'; // the redirect URL for the OAuth API
