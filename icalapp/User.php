@@ -16,7 +16,7 @@ class User {
 
 	private $changed = false;
 
-	public function __construct($googleId, $name, $email, $id) {
+	public function __construct($googleId, $name, $email, $id = null) {
 		if(!empty($id)) {
 			$this->id = $id;
 		} else {
