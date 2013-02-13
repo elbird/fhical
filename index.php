@@ -31,11 +31,8 @@ if (isset($_SESSION['token'])) {
 }
 
 if (isset($_REQUEST['logout'])) {
-  unset($_SESSION['user']);
-  unset($_SESSION['token']);
-  unset($_SESSION['key']);
-  unset($_SESSION['userDataFormData']);
   $client->revokeToken();
+  session_destroy();
 }
 
 if ($client->getAccessToken()) {
